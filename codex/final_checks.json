@@ -1,0 +1,12 @@
+{
+  "pdf_pages": 7,
+  "data_exploration_pages": 2,
+  "methodology_pages": 3,
+  "pdf_bytes": 277971,
+  "code_zip_bytes": 81476,
+  "report_numeric_checks_passed": true,
+  "layout_bounds_passed": true,
+  "no_overfull_or_undefined": true,
+  "archive_verified": true,
+  "source_sha256": "367f5d8c9fcafc6e56c52764163aa4ce90493dc2a4ba1032ada5c9b6126e7646"
+}

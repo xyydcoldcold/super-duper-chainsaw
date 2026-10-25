@@ -1,0 +1,13 @@
+feature,type,missing_%,n_unique_raw,missing_%_Baseball,missing_%_Basketball,missing_%_Soccer,unparseable_%
+ease,numeric (0-10),0.0,12,0.0,0.0,0.0,
+strategy,Likert (5 levels),0.0,5,0.0,0.0,0.0,
+injury,Likert (5 levels),0.0,5,0.0,0.0,0.0,
+individual,Likert (5 levels),0.0,5,0.0,0.0,0.0,
+where,multi-select,0.0,58,0.0,0.0,0.0,
+season,multi-select,0.0,13,0.0,0.0,0.0,
+music,multi-select,0.0,91,0.0,0.0,0.0,
+food,free text,1.9801980198019802,484,2.4752475247524752,3.4653465346534658,0.0,
+colour,free text,0.825082508250825,176,1.4851485148514851,0.49504950495049505,0.49504950495049505,
+song,free text,7.755775577557755,392,10.891089108910892,9.900990099009901,2.4752475247524752,
+feel,free text,0.0,385,0.0,0.0,0.0,
+price,free text -> number,0.6600660066006601,248,0.9900990099009901,0.49504950495049505,0.49504950495049505,2.31023102310231

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "group_disjointness": true,
+  "five_group_folds": true,
+  "parser_edge_cases": true,
+  "unknown_tokens_handled": true,
+  "transform_does_not_refit": true,
+  "id_and_label_excluded": true,
+  "model_smoke_fits": [
+    "softmax",
+    "forest",
+    "knn"
+  ],
+  "candidate_counts": {
+    "softmax": 24,
+    "forest": 24,
+    "knn": 24
+  },
+  "validation_or_test_evaluated": false,
+  "note": "Smoke fits use one internal training fold. No performance claims or model selection."
+}

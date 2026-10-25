@@ -1,0 +1,22 @@
+{
+  "training_rows": 606,
+  "training_respondents": 202,
+  "feature_count": 1389,
+  "density": 0.022374051660025613,
+  "price_cap_99pct": 1870.0000000000045,
+  "constant_zero_processed_columns": 7,
+  "exact_duplicate_feature_label_rows": 0,
+  "price_iqr_outliers": 67,
+  "foreign_currency_rows": 7,
+  "text_vocab_sizes": {
+    "food": 452,
+    "colour": 120,
+    "song": 332,
+    "feeling": 447
+  },
+  "multiselect_sizes": {
+    "venue": 7,
+    "season": 4,
+    "music": 10
+  }
+}

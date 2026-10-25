@@ -1,0 +1,171 @@
+
+======================================================================
+1. Size, respondents and class balance
+======================================================================
+rows = 606, respondents = 202, rows per respondent = [3]
+label
+Soccer        202
+Baseball      202
+Basketball    202
+every respondent answered for all three sports: True
+
+======================================================================
+2. Feature types and missing values
+======================================================================
+   feature                type  missing_%  n_unique_raw  missing_%_Baseball  missing_%_Basketball  missing_%_Soccer  unparseable_%
+      ease      numeric (0-10)        0.0            12                 0.0                   0.0               0.0            NaN
+  strategy   Likert (5 levels)        0.0             5                 0.0                   0.0               0.0            NaN
+    injury   Likert (5 levels)        0.0             5                 0.0                   0.0               0.0            NaN
+individual   Likert (5 levels)        0.0             5                 0.0                   0.0               0.0            NaN
+     where        multi-select        0.0            58                 0.0                   0.0               0.0            NaN
+    season        multi-select        0.0            13                 0.0                   0.0               0.0            NaN
+     music        multi-select        0.0            91                 0.0                   0.0               0.0            NaN
+      food           free text        2.0           484                 2.5                   3.5               0.0            NaN
+    colour           free text        0.8           176                 1.5                   0.5               0.5            NaN
+      song           free text        7.8           392                10.9                   9.9               2.5            NaN
+      feel           free text        0.0           385                 0.0                   0.0               0.0            NaN
+     price free text -> number        0.7           248                 1.0                   0.5               0.5            2.3
+rows with every question empty: 0
+
+======================================================================
+3. Numeric features: distributions, outliers, separation
+======================================================================
+        ease  strategy  injury  individual    price
+count  606.0    606.00  606.00      606.00   588.00
+mean     5.4      3.77    3.51        3.42   201.28
+std     2.38      0.95    1.01        1.13   349.33
+min      0.0      1.00    1.00        1.00     0.00
+25%      3.0      3.00    3.00        3.00    50.00
+50%      5.0      4.00    4.00        4.00   100.00
+75%      7.0      4.00    4.00        4.00   200.00
+max     10.0      5.00    5.00        5.00  5000.00
+
+price: unparseable answers -> ['very willing', 'somewhat will', 'very willing', 'Couple hundred bucks', '除非我的国家队晋级[a competition]，否则我不会花一美元——在这种情况下，我愿意支付的金额等于票价乘以几乎为零的概率。\n\n（但我运气好得有点奇怪，很多我认为完全不可能的事情都发生了——比如绿洲乐队重组。所以，概率或许并非为零。）', 'not too much', 'not too much', 'not too much', 'not much if at all', 'a bit more since it gives you higher chance to see the swing and maybe catch the ball', 'A bit more than usual to see close ups and players technique', 'Somewhat willing', 'Very willing as most action is in one place', 'Very willing']
+price IQR rule upper fence = 425; answers above it = 71; above cap 1000 = 8; skewness raw = 6.72, log1p(capped) = -1.12
+ease takes half values: [np.float64(3.5)]
+
+    feature  Baseball  Basketball  Soccer  within_std  separation
+      ease      4.02        6.03    6.16        2.17        0.99
+    injury      2.95        3.83    3.76        0.93        0.95
+individual      3.73        3.62    2.92        1.07        0.75
+  strategy      3.49        3.88    3.93        0.93        0.48
+ log_price      3.64        4.45    4.48        1.89        0.44
+
+largest |correlation| between numeric features: 0.31
+
+======================================================================
+4. Multi-select features: % of responses choosing each option
+======================================================================
+question                        option  Baseball  Basketball  Soccer  max_gap
+   where               Indoor facility      23.3        96.5    63.4     73.3
+   where          Outdoor public space      87.1        88.1    90.6      3.5
+   where School or university facility      75.7        94.6    88.1     18.8
+   where Community recreation facility      51.5        88.1    74.8     36.6
+   where       Private sports facility      54.0        80.7    67.3     26.7
+   where             At home or nearby      13.4        63.9    46.0     50.5
+   where                        Others       3.5         7.9    12.4      8.9
+  season                        Winter       7.4        60.9     8.9     53.5
+  season                        Spring      77.2        85.6    70.3     15.3
+  season                        Summer      92.1        92.6    89.1      3.5
+  season                          Fall      72.3        88.6    69.3     19.3
+   music                           Pop      34.7        46.5    39.1     11.9
+   music                          Rock      24.8        30.7    23.3      7.4
+   music                Hip-hop or rap      25.7        83.7    38.6     57.9
+   music           Electronic or dance      11.4        21.3    31.7     20.3
+   music                         Latin       5.4         0.5    40.1     39.6
+   music                       Country      30.2         3.0     4.5     27.2
+   music           Folk or traditional      10.9         1.5     5.0      9.4
+   music             Classical or jazz       7.9         2.0     0.5      7.4
+   music                         Other       2.5         3.5     5.0      2.5
+   music            No particular type      30.7         9.4    18.8     21.3
+
+======================================================================
+5. Free-text features: answer length and most class-specific words
+======================================================================
+
+[food] words per answer: median 2, max 29, distinct raw answers 484
+
+[colour] words per answer: median 1, max 23, distinct raw answers 176
+
+[song] words per answer: median 2, max 12, distinct raw answers 392
+
+[feel] words per answer: median 1, max 58, distinct raw answers 385
+
+[food] frequent words (>=8 uses) with >=70% in one class:
+    word  count  top_class  purity
+  peanut     27   Baseball    0.93
+    coca     14     Soccer    0.71
+gatorade     14 Basketball    0.79
+     bbq      9     Soccer    0.89
+    fish      8     Soccer    1.00
+
+[colour] frequent words (>=8 uses) with >=70% in one class:
+  word  count  top_class  purity
+ green    117     Soccer    0.95
+orange    110 Basketball    0.95
+
+[song] frequent words (>=8 uses) with >=70% in one class:
+   word  count  top_class  purity
+   waka    101     Soccer    1.00
+   take     60   Baseball    0.98
+   ball     56   Baseball    0.95
+    out     56   Baseball    1.00
+shakira     50     Soccer    1.00
+ africa     31     Soccer    1.00
+   time     31     Soccer    1.00
+  drake     14 Basketball    0.86
+   flag     10     Soccer    1.00
+  siriu      9 Basketball    0.89
+
+[feel] frequent words (>=8 uses) with >=70% in one class:
+     word  count  top_class  purity
+  relaxed     18   Baseball    0.94
+ confused     16   Baseball    0.94
+     team     12     Soccer    0.75
+     fast     11 Basketball    1.00
+   energy      9 Basketball    0.78
+   sudden      8   Baseball    0.75
+     know      8   Baseball    1.00
+energized      8 Basketball    0.75
+
+======================================================================
+6. Encoded design matrix
+======================================================================
+min_df=1: 1437 features (text vocab sizes [331, 96, 451, 521]) for 606 rows
+min_df=2: 581 features (text vocab sizes [134, 35, 159, 215]) for 606 rows
+min_df=3: 387 features (text vocab sizes [87, 22, 99, 141]) for 606 rows
+min_df=5: 228 features (text vocab sizes [44, 13, 62, 71]) for 606 rows
+binary features present in <1% of rows: 417 of 564
+fraction of zeros among binary features: 0.969
+
+======================================================================
+7. Single-feature predictiveness (mutual information with label)
+======================================================================
+                            feature  mutual_info_bits
+                          song:waka             0.317
+              where=Indoor facility             0.315
+                       colour:green             0.313
+                      colour:orange             0.289
+                      season=Winter             0.229
+               music=Hip-hop or rap             0.191
+                        music=Latin             0.178
+                           song:out             0.161
+                          song:take             0.160
+                        colour:blue             0.160
+                        food:hotdog             0.155
+                             injury             0.143
+                       song:shakira             0.142
+            where=At home or nearby             0.141
+                               ease             0.141
+                          song:ball             0.131
+                          log_price             0.100
+                      music=Country             0.098
+                        song:africa             0.085
+                          song:time             0.085
+where=Community recreation facility             0.083
+                       feel:excited             0.080
+                         individual             0.079
+                       colour:white             0.067
+                           strategy             0.066
+
+Done. Figures in figures/, tables in tables/.

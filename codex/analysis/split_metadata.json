@@ -1,0 +1,19 @@
+{
+  "seed": 311,
+  "source_sha256": "367f5d8c9fcafc6e56c52764163aa4ce90493dc2a4ba1032ada5c9b6126e7646",
+  "splits": {
+    "test": {
+      "respondents": 44,
+      "rows": 132
+    },
+    "validation": {
+      "respondents": 44,
+      "rows": 132
+    },
+    "train": {
+      "respondents": 202,
+      "rows": 606
+    }
+  },
+  "note": "EDA uses train only. No validation/test feature summaries or model scores."
+}
